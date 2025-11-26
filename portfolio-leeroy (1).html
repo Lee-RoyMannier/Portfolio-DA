@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lee-Roy Mannier | Data Analyst</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        nav .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 2rem 8rem;
+            text-align: center;
+            background-image: url('https://www.claudiatenhoope.com/wp-content/uploads/2017/11/background1-minmin-1.png');
+            background-size:cover;
+            
+
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            line-height: 1.3;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 span {
+            color: #3498db;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            border-radius: 30px;
+        }
+
+        .hero .cta:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .hero .cta-secondary {
+            background: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+        }
+
+        .hero .cta-secondary:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            letter-spacing: 0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 4rem;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #fafafa;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            background: #f5f5f5;
+            border-left-color: #3498db;
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .tools {
+            font-size: 0.85rem;
+            color: #999;
+            font-style: italic;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem 0 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: #fafafa;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            background: #f0f0f0;
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Projects */
+        .projects {
+            background: #fafafa;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .project-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background: #e8f4f8;
+            color: #3498db;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .project-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Blog Section */
+        .blog {
+            background: white;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: #fafafa;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .blog-image {
+            height: 180px;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .blog-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .blog-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Experience */
+        .experience {
+            background: #fafafa;
+        }
+
+        .experience-list {
+            margin-top: 3rem;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-title h4 {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #666;
+        }
+
+        .experience-date {
+            font-size: 0.9rem;
+            color: #3498db;
+            white-space: nowrap;
+            font-weight: 400;
+        }
+
+        .experience-item p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        }
+
+        .contact p {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 1rem 2.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            border-radius: 5px;
+        }
+
+        .contact-link:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        .contact-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 3rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .experience-date {
+                margin-top: 0.5rem;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .section-title, .service-card, .project-card, .blog-card {
+            animation: fadeInUp 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+
+
+         
+            <div class="logo">Lee-Roy Mannier</div>
+               
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="https://media.licdn.com/dms/document/media/v2/D4E2DAQFYM2l16qfdQA/profile-treasury-document-pdf-analyzed/B4EZpegrpKHUAk-/0/1762522219196?e=1764806400&v=beta&t=zh1CQ2sjpFLL3e5COqMz5LttO2f2rz9fOEMAKagY108" target="_blank">Experience</a></li>
+                <li><a href="https://www.linkedin.com/in/lee-roy-mannier/">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Je transforme vos <span>données</span> en décisions stratégiques</h1>
+            <p>
+                Data Analyst avec 4 ans d'expérience, je traduis vos données complexes en insights actionnables. 
+                Mon objectif : améliorer vos résultats, optimiser vos processus et réduire vos coûts.
+            </p>
+            <div class="cta-group">
+                <a href="https://www.linkedin.com/in/lee-roy-mannier/" class="cta">Travailler ensemble</a>
+                <a href="#projects" class="cta cta-secondary">Voir mes projets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Ce que je peux faire pour vous</h2>
+            <p class="section-subtitle">
+                J'ai travaillé dans les secteurs pharmaceutique, forensic et marketing digital. 
+                Mon approche est pratique et je prends la responsabilité de vos projets du début à la fin.
+            </p>
+
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3>Data Analysis & Insights</h3>
+                    <p>
+                        Je transforme vos grands volumes de données en insights actionnables. 
+                        Visualisations claires, analyses statistiques robustes et communication adaptée à tous vos stakeholders.
+                    </p>
+                    <div class="tools"></div>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-database service-icon"></i>
+                    <h3>Data Engineering & ETL</h3>
+                    <p>
+                        Conception de pipelines data robustes et scalables. Code de haute qualité, versionné avec Git, 
+                        prêt pour la production avec tests automatisés.
+                    </p>
+                    <div class="tools"></div>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-dashboard service-icon"></i>
+                    <h3>Dashboards & Reporting</h3>
+                    <p>
+                        Dashboards interactifs pour monitorer vos KPIs en temps réel. 
+                        Exploration autonome des tendances et automatisation du reporting récurrent.
+                    </p>
+                    <div class="tools"></div>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-robot service-icon"></i>
+                    <h3>Process Automation</h3>
+                    <p>
+                        Automatisation des tâches répétitives et du reporting manuel. 
+                        Réduction jusqu'à 70% des temps de traitement et gain de productivité immédiat.
+                    </p>
+                    <div class="tools"></div>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-shield-alt service-icon"></i>
+                    <h3>Data Quality & Governance</h3>
+                    <p>
+                        Mise en place de systèmes de validation et traçabilité. 
+                        Garantie de conformité réglementaire et fiabilité à 100% pour vos données critiques.
+                    </p>
+                    <div class="tools"></div>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-users service-icon"></i>
+                    <h3>Training & Support</h3>
+                    <p>
+                        Formation de vos équipes aux outils BI et aux bonnes pratiques data. 
+                        Workshops, formations individuelles et documentation complète.
+                    </p>
+                    <div class="tools"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">À propos de moi</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Bonjour, je m'appelle <strong>Lee-Roy Mannier</strong> et je travaille en tant que Data Analyst depuis 4 ans. 
+                        Diplômé d'un Bac+4 en Data Analysis (ENSAE-ENSAI), je me spécialise dans la transformation 
+                        de données complexes en décisions business.
+                    </p>
+                    <p>
+                        Depuis toujours, j'ai aimé résoudre des puzzles. Pour moi, chaque dataset est un puzzle géant 
+                        à résoudre. Trouver des patterns cachés et transformer des données brutes en insights actionnables, 
+                        c'est ce qui me passionne chaque jour.
+                    </p>
+                    <p>
+                        J'ai travaillé chez <strong>Sanofi Pasteur</strong> (pharma), <strong>Forentech</strong> (forensic judiciaire) 
+                        et <strong>Adhavan Algorithmics</strong> (marketing digital). Cette diversité sectorielle me permet 
+                        de comprendre rapidement vos enjeux métiers et de proposer des solutions adaptées.
+                    </p>
+                    <p>
+                        Je suis disponible pour des missions freelance, projets long terme ou CDI. 
+                        <a href="https://www.linkedin.com/in/lee-roy-mannier/" style="color: #3498db; text-decoration: none;">Contactez-moi</a> pour discuter de votre projet.
+                    </p>
+                </div>
+                <div>
+                    <div class="about-image">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Années d'expérience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Projets réalisés</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">80+</div>
+                    <div class="stat-label">Utilisateurs formés</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projets sélectionnés</h2>
+            <p class="section-subtitle">
+                Voici mes projets récents qui démontrent mon expertise en analyse de données, 
+                data engineering et visualisation business.
+            </p>
+
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analyse AIRBNB</h3>
+                        <p>
+                            Pipeline analytique end-to-end avec dbt et Snowflake. Analyse du marché Airbnb : 
+                            évolution de la part de marché vs hôtels (2012-2023), distribution des prix par quartier, 
+                            impact des super-hôtes.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">dbt</span>
+                            <span class="tag">Snowflake</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Data Modeling</span>
+                            <span class="tag">SCD2</span>
+                        </div>
+                        <a href="https://github.com/Lee-RoyMannier/airbnb_analytics" class="project-link"  target="_blank">
+                            Voir le projet <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fa-brands fa-spotify fa-beat"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>HypeFM Music Analytics Dashboard</h3>
+                        <p>
+                            Analyse des tendances de streaming Spotify pour HypeFM, visant à identifier les morceaux à fort potentiel 
+                            et à ajuster la programmation musicale de la radio.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">Statistiques</span>
+                            <span class="tag">Corrélation</span>
+                        </div>
+                        <a href="https://github.com/Lee-RoyMannier/HypeFM-Analytics" class="project-link"  target="_blank">
+                            En savoir plus <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fa-brands fa-google fa-beat-fade"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analyse marketing des ventes Google</h3>
+                        <p>
+                            Mise en place d'un dashboard de pilotage pour le Google Store (Online + Offline). Le projet consiste à réaliser l'ETL (nettoyage, fusion de sources hétérogènes) et l'analyse de la performance. L'objectif final est de mesurer précisément le Retour sur Investissement (ROI) des dépenses marketing par canal pour formuler des recommandations stratégiques sur l'allocation budgétaire et optimiser la rentabilité.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">ETL</span>
+                            <span class="tag">Nettoyage de données</span>
+                            <span class="tag">Data Quality</span>
+                            <span class="tag">Analyse Omnicanal</span>
+                            <span class="tag">ROI Marketing</span>
+                            <span class="tag">Business Intelligence.</span>
+                        </div>
+                        <a href="https://github.com/Lee-RoyMannier/Google-Merchandise-Analystics" class="project-link" target="_blank">
+                            En savoir plus <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+    
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 class="section-title">Articles & Insights</h2>
+            <p class="section-subtitle">
+                Je partage régulièrement mes apprentissages et retours d'expérience sur les projets data, 
+                les outils et les bonnes pratiques.
+            </p>
+
+            <div class="blog-grid">
+                
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 15 Jan 2025</span>
+                            <span><i class="far fa-clock"></i> 5 min</span>
+                        </div>
+                        <h3>Comment j'ai réduit de 70% le temps de reporting</h3>
+                        <p>
+                            Retour d'expérience sur l'automatisation du reporting forensic chez Forentech. 
+                            Stratégies d'optimisation SQL, architecture Tableau et gains de productivité mesurés.
+                        </p>
+                        <a href="#" class="blog-link">Lire l'article →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 8 Jan 2025</span>
+                            <span><i class="far fa-clock"></i> 7 min</span>
+                        </div>
+                        <h3>dbt vs SQL classique : Pourquoi j'ai migré</h3>
+                        <p>
+                            Comparaison détaillée entre SQL traditionnel et dbt. Avantages de la modularité, 
+                            des tests automatisés et de la documentation as code pour les projets data à grande échelle.
+                        </p>
+                        <a href="#" class="blog-link">Lire l'article →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 2 Jan 2
+            
+
