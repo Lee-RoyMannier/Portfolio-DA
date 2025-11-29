@@ -163,15 +163,16 @@
         }
 
         /* ------------------------------------------------------------------ */
-        /* Services Grid (Modification pour le Carrousel/Slider) */
+        /* Styles pour les Carrousels (Services et Projets) */
         /* ------------------------------------------------------------------ */
 
         .slider-wrapper {
             position: relative; /* Base pour positionner les flèches */
             margin-top: 3rem;
         }
-
-        .services-grid {
+        
+        /* Conteneurs de défilement (Grilles) */
+        .services-grid, .projects-grid {
             display: flex; 
             flex-wrap: nowrap; 
             overflow-x: hidden; /* Masquer le défilement natif */
@@ -182,24 +183,33 @@
         }
 
         /* Masquer la barre de défilement pour les navigateurs Webkit */
-        .services-grid::-webkit-scrollbar {
+        .services-grid::-webkit-scrollbar, .projects-grid::-webkit-scrollbar {
             display: none;
         }
-
+        
         .service-card {
             flex-shrink: 0; 
             width: 320px; 
-            
             background: #fafafa;
             padding: 2.5rem;
             transition: all 0.3s;
             border-left: 3px solid transparent;
         }
+        
+        /* Modification pour que les project-card agissent comme des slides */
+        .project-card {
+            flex-shrink: 0;
+            width: 350px; /* Largeur fixe pour le défilement */
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
 
-        .service-card:hover {
-            background: #f5f5f5;
-            border-left-color: #3498db;
-            transform: translateY(-5px);
+        .project-card:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         /* Styles des flèches */
@@ -225,18 +235,21 @@
         }
 
         .slider-nav button.arrow-left {
-            left: -10px; /* Déplacé légèrement à gauche du conteneur */
+            left: -10px; 
         }
 
         .slider-nav button.arrow-right {
-            right: -10px; /* Déplacé légèrement à droite du conteneur */
+            right: -10px; 
+        }
+        /* Fin des styles de Carrousel */
+
+        /* Styles existants pour les cartes de services */
+        .service-card:hover {
+            background: #f5f5f5;
+            border-left-color: #3498db;
+            transform: translateY(-5px);
         }
 
-        .slider-nav button:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-        
         .service-icon {
             font-size: 2.5rem;
             color: #3498db;
@@ -265,7 +278,59 @@
             margin-top: 1rem;
             line-height: 1.6;
         }
-        /* ------------------------------------------------------------------ */
+        
+        /* Nouveau style pour le bandeau des images de projet */
+        .project-image {
+            height: 80px; /* Hauteur du bandeau */
+            background: #3498db; /* Couleur de fond bleue */
+            border-bottom: 3px solid #2980b9; /* Petite bordure foncée en bas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem; /* Taille de l'icône */
+            color: white;
+            padding: 1rem;
+        }
+
+        /* --- NOUVEAU: Styles pour le Voir Plus / Hauteur uniforme --- */
+        .project-content {
+            padding: 2rem;
+            min-height: 250px; 
+        }
+        
+        .project-content h3 {
+             font-size: 1.4rem;
+             font-weight: 400;
+             margin-bottom: 1rem;
+             color: #2c3e50;
+        }
+        
+        .project-content p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .truncated {
+            display: inline;
+        }
+        .hidden-text {
+            display: none;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #3498db;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .read-more:hover {
+            color: #2980b9;
+        }
+        /* Fin des nouveaux styles */
 
 
         /* About Section */
@@ -338,54 +403,6 @@
             background: #fafafa;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: white;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.4rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .project-content p {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
         .project-tags {
             display: flex;
             flex-wrap: wrap;
@@ -415,13 +432,13 @@
             text-decoration: underline;
         }
 
-        /* Blog Section */
+        /* Blog Section - RETOUR AU STYLE GRILLE D'ORIGINE */
         .blog {
             background: white;
         }
 
         .blog-grid {
-            display: grid;
+            display: grid; /* Rétablissement de la grille */
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
@@ -662,7 +679,10 @@
                 right: 10px; 
             }
             .service-card {
-                width: 280px; /* Légèrement plus petit pour mobile */
+                width: 280px; 
+            }
+            .project-card {
+                width: 300px;
             }
         }
 
@@ -726,11 +746,11 @@
                 Mon approche est pratique et je prends la responsabilité de vos projets du début à la fin.
             </p>
             
-            <div class="slider-wrapper">
+            <div class="slider-wrapper services-slider-wrapper">
                 
                 <div class="slider-nav">
-                    <button class="arrow-left" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
-                    <button class="arrow-right" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+                    <button class="arrow-left services-arrow-left" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+                    <button class="arrow-right services-arrow-right" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
                 </div>
                 
                 <div class="services-grid">
@@ -745,7 +765,15 @@
                         <div class="tools"></div>
                     </div>
 
-                    
+                    <div class="service-card">
+                        <i class="fas fa-database service-icon"></i>
+                        <h3>Data Engineering & ETL</h3>
+                        <p>
+                            Conception de pipelines data robustes et scalables. Code de haute qualité, versionné avec Git, 
+                            prêt pour la production avec tests automatisés.
+                        </p>
+                        <div class="tools"></div>
+                    </div>
 
                     <div class="service-card">
                         <i class="fas fa-dashboard service-icon"></i>
@@ -789,7 +817,7 @@
                 </div>
                 
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="about" class="about">
@@ -849,96 +877,108 @@
                 Voici mes projets récents qui démontrent mon expertise en analyse de données, 
                 data engineering et visualisation business.
             </p>
-
-            <div class="projects-grid">
+            
+            <div class="slider-wrapper projects-slider-wrapper">
                 
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fa-brands fa-airbnb"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Analyse AIRBNB</h3>
-                        <p>
-                            Pipeline analytique end-to-end avec dbt et Snowflake. Analyse du marché Airbnb : 
-                            évolution de la part de marché vs hôtels (2012-2023), distribution des prix par quartier, 
-                            impact des super-hôtes.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">dbt</span>
-                            <span class="tag">Snowflake</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">Data Modeling</span>
-                            <span class="tag">SCD2</span>
-                        </div>
-                        <a href="https://github.com/Lee-RoyMannier/airbnb_analytics" class="project-link"  target="_blank">
-                            Voir le projet <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+                <div class="slider-nav">
+                    <button class="arrow-left projects-arrow-left" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+                    <button class="arrow-right projects-arrow-right" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fa-brands fa-spotify fa-beat"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>HypeFM Music Analytics Dashboard</h3>
-                        <p>
-                            Analyse des tendances de streaming Spotify pour HypeFM, visant à identifier les morceaux à fort potentiel 
-                            et à ajuster la programmation musicale de la radio.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Excel</span>
-                            <span class="tag">Statistiques</span>
-                            <span class="tag">Corrélation</span>
+                <div class="projects-grid">
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fa-brands fa-airbnb"></i>
                         </div>
-                        <a href="https://github.com/Lee-RoyMannier/HypeFM-Analytics" class="project-link"  target="_blank">
-                            En savoir plus <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fa-brands fa-google fa-beat-fade"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Analyse marketing des ventes Google</h3>
-                        <p>
-                            Mise en place d'un dashboard de pilotage pour le Google Store (Online + Offline). Le projet consiste à réaliser l'ETL (nettoyage, fusion de sources hétérogènes) et l'analyse de la performance. L'objectif final est de mesurer précisément le Retour sur Investissement (ROI) des dépenses marketing par canal pour formuler des recommandations stratégiques sur l'allocation budgétaire et optimiser la rentabilité.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Excel</span>
-                            <span class="tag">ETL</span>
-                            <span class="tag">Nettoyage de données</span>
-                            <span class="tag">Data Quality</span>
-                            <span class="tag">Analyse Omnicanal</span>
-                            <span class="tag">ROI Marketing</span>
-                            <span class="tag">Business Intelligence.</span>
+                        <div class="project-content">
+                            <h3>Analyse AIRBNB</h3>
+                            <p>
+                                <span class="truncated">Pipeline analytique end-to-end avec dbt et Snowflake. Analyse du marché Airbnb : 
+                                évolution de la part de marché vs hôtels (2012-2023), distribution des prix par quartier...</span>
+                                <span class="hidden-text">, impact des super-hôtes. Ce projet a démontré ma capacité à utiliser des outils modernes du Data Stack et à modéliser des données changeantes (SCD2).</span>
+                                <span class="read-more" data-action="more">Voir plus</span>
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">dbt</span>
+                                <span class="tag">Snowflake</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">Data Modeling</span>
+                                <span class="tag">SCD2</span>
+                            </div>
+                            <a href="https://github.com/Lee-RoyMannier/airbnb_analytics" class="project-link"  target="_blank">
+                                Voir le projet <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
-                        <a href="https://github.com/Lee-RoyMannier/Google-Merchandise-Analystics" class="project-link" target="_blank">
-                            En savoir plus <i class="fas fa-arrow-right"></i>
-                        </a>
                     </div>
-                </div>
 
-                <div class="project-card">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fa-brands fa-spotify fa-beat"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>HypeFM Music Analytics Dashboard</h3>
+                            <p>
+                                <span class="truncated">Analyse des tendances de streaming Spotify pour HypeFM, visant à identifier les morceaux à fort potentiel 
+                                et à ajuster la programmation musicale de la radio.</span>
+                                <span class="hidden-text"> Ce projet a nécessité une forte compréhension statistique pour évaluer la corrélation entre les métriques de popularité et les facteurs de succès.</span>
+                                <span class="read-more" data-action="more">Voir plus</span>
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Excel</span>
+                                <span class="tag">Statistiques</span>
+                                <span class="tag">Corrélation</span>
+                            </div>
+                            <a href="https://github.com/Lee-RoyMannier/HypeFM-Analytics" class="project-link"  target="_blank">
+                                En savoir plus <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fa-brands fa-google fa-beat-fade"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Analyse marketing des ventes Google</h3>
+                            <p>
+                                <span class="truncated">Mise en place d'un dashboard de pilotage pour le Google Store (Online + Offline). Le projet consiste à réaliser l'ETL (nettoyage, fusion de sources hétérogènes) et l'analyse de la performance.</span>
+                                <span class="hidden-text"> L'objectif final est de mesurer précisément le Retour sur Investissement (ROI) des dépenses marketing par canal pour formuler des recommandations stratégiques sur l'allocation budgétaire et optimiser la rentabilité.</span>
+                                <span class="read-more" data-action="more">Voir plus</span>
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Excel</span>
+                                <span class="tag">ETL</span>
+                                <span class="tag">Nettoyage de données</span>
+                                <span class="tag">Data Quality</span>
+                                <span class="tag">Analyse Omnicanal</span>
+                                <span class="tag">ROI Marketing</span>
+                                <span class="tag">Business Intelligence.</span>
+                            </div>
+                            <a href="https://github.com/Lee-RoyMannier/Google-Merchandise-Analystics" class="project-link" target="_blank">
+                                En savoir plus <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                   <div class="project-card">
                     <div class="project-image">
                         <i class="fa-solid fa-flask"></i>
                     </div>
                     <div class="project-content">
                         <h3>Analyse des emplois dans le domaine de la Data Science</h3>
                         <p>
-J’ai développé un outil d’analyse du marché mondial de l’emploi en Data Science à partir de données collectées par web scraping sur plusieurs plateformes de recrutement.
+<span class="truncated">J’ai développé un outil d’analyse du marché mondial de l’emploi en Data Science à partir de données collectées par web scraping sur plusieurs plateformes de recrutement.
 Le projet permet d’identifier :
-
-les plateformes les plus actives,
+</span>
+<span class="hidden-text">les plateformes les plus actives,
 
 le salaire médian selon les postes et les pays,
 
 les tendances du marché,
 grâce à un système de filtres interactifs (pays, compétences, titre de poste, plateforme, etc.).
 
-L’objectif est d’offrir une vision centralisée et exploitable des opportunités en Data Science à l’échelle internationale.                        </p>
+L’objectif est d’offrir une vision centralisée et exploitable des opportunités en Data Science à l’échelle internationale.                        </span><span class="read-more" data-action="more">Voir plus</span></p>
                         <div class="project-tags">
                             <span class="tag">Excel</span>
                             <span class="tag">ETL</span>
@@ -950,7 +990,17 @@ L’objectif est d’offrir une vision centralisée et exploitable des opportuni
                         </a>
                     </div>
                 </div>
+
+                </div>
+                
             </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://github.com/Lee-RoyMannier?tab=repositories" class="cta">
+                    <i class="fas fa-th-list"></i> Voir tous mes projets (GitHub)
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -966,23 +1016,26 @@ L’objectif est d’offrir une vision centralisée et exploitable des opportuni
 
             <div class="blog-grid">
                 
+                
+
                 <div class="blog-card">
                     <div class="blog-image">
-                        <i class="fas fa-chart-bar"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> 15 Jan 2025</span>
-                            <span><i class="far fa-clock"></i> 5 min</span>
+                            <span><i class="far fa-calendar"></i> 2 Jan 2025</span>
+                            <span><i class="far fa-clock"></i> 6 min</span>
                         </div>
-                        <h3>Comment j'ai réduit de 70% le temps de reporting</h3>
+                        <h3>L'impact du Data Quality dans le secteur Pharmaceutique</h3>
                         <p>
-                            Retour d'expérience sur l'automatisation du reporting forensic chez Forentech. 
-                            Stratégies d'optimisation SQL, architecture Tableau et gains de productivité mesurés.
+                            Analyse critique de l'importance de la traçabilité des données (Data Lineage) 
+                            et de la validation des processus dans un environnement réglementé.
                         </p>
                         <a href="#" class="blog-link">Lire l'article →</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -1011,48 +1064,95 @@ L’objectif est d’offrir une vision centralisée et exploitable des opportuni
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const grid = document.querySelector('.services-grid');
-            const leftArrow = document.querySelector('.arrow-left');
-            const rightArrow = document.querySelector('.arrow-right');
             
-            // Calcul de la largeur d'une carte + l'espacement (gap)
-            // La largeur du service-card est 320px, le gap est 2.5rem (~40px si 1rem=16px)
-            // Total: 320px + 40px = 360px
-            const scrollDistance = 360; 
+            // --- 1. FONCTION DE CONFIGURATION DU CARROUSEL EN BOUCLE ---
+            function setupCarousel(gridSelector, leftArrowSelector, rightArrowSelector) {
+                const grid = document.querySelector(gridSelector);
+                const leftArrow = document.querySelector(leftArrowSelector);
+                const rightArrow = document.querySelector(rightArrowSelector);
 
-            function updateArrows() {
-                // Désactiver la flèche gauche si nous sommes tout au début
-                leftArrow.disabled = grid.scrollLeft === 0;
+                if (!grid || !leftArrow || !rightArrow) return;
 
-                // Désactiver la flèche droite si nous sommes tout à la fin
-                // (scrollLeft + clientWidth doit être égal ou très proche de scrollWidth)
-                rightArrow.disabled = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 5;
+                // Fonction pour calculer la largeur de défilement (Largeur de la première carte + Gap)
+                function calculateScrollDistance() {
+                    const firstCard = grid.firstElementChild;
+                    if (!firstCard) return 0;
+                    
+                    // Largeur réelle de la carte
+                    const cardWidth = firstCard.offsetWidth; 
+                    
+                    // Tente de calculer le gap (2.5rem = 40px)
+                    const style = window.getComputedStyle(grid);
+                    const gapValue = parseFloat(style.gap) || 40; // Fallback à 40px
+                    
+                    return cardWidth + gapValue;
+                }
+                
+                function scroll(direction) {
+                    const scrollDistance = calculateScrollDistance();
+                    const maxScrollLeft = grid.scrollWidth - grid.clientWidth;
+
+                    if (direction === 'right') {
+                        // Si l'utilisateur est à la fin (avec une tolérance de 5px)
+                        if (grid.scrollLeft >= maxScrollLeft - 5) { 
+                            // Revenir au début de manière douce
+                            grid.scrollTo({ left: 0, behavior: 'smooth' }); 
+                        } else {
+                            grid.scrollBy({ left: scrollDistance, behavior: 'smooth' });
+                        }
+                    } else if (direction === 'left') {
+                        // Si l'utilisateur est au début
+                        if (grid.scrollLeft <= 5) { 
+                            // Aller à la fin de manière douce
+                            grid.scrollTo({ left: maxScrollLeft, behavior: 'smooth' }); 
+                        } else {
+                            grid.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
+                        }
+                    }
+                }
+
+                leftArrow.addEventListener('click', () => scroll('left'));
+                rightArrow.addEventListener('click', () => scroll('right'));
             }
 
-            // Gestion du clic sur la flèche droite
-            rightArrow.addEventListener('click', function() {
-                grid.scrollBy({
-                    left: scrollDistance,
-                    behavior: 'smooth'
+            // 2. --- FONCTIONNALITÉ "VOIR PLUS" ---
+            document.querySelectorAll('.read-more').forEach(button => {
+                button.addEventListener('click', function() {
+                    const parentP = this.closest('p');
+                    const hiddenText = parentP.querySelector('.hidden-text');
+                    const truncatedText = parentP.querySelector('.truncated');
+                    
+                    if (hiddenText.style.display === 'none' || hiddenText.style.display === '') {
+                        // Afficher le reste
+                        hiddenText.style.display = 'inline';
+                        this.textContent = 'Voir moins';
+                        // Optionnel : masquer le point de suspension à la fin du truncated
+                        if (truncatedText) {
+                            // On retire le "..." uniquement si on veut masquer la partie truncated quand on affiche le hidden
+                            // Mais ici, on garde le truncated pour former la phrase complète. On gère juste les "..."
+                            truncatedText.textContent = truncatedText.textContent.replace('...', '');
+                        }
+                    } else {
+                        // Masquer le reste
+                        hiddenText.style.display = 'none';
+                        this.textContent = 'Voir plus';
+                        // Ré-ajouter le point de suspension pour le texte tronqué
+                        if (truncatedText && !truncatedText.textContent.endsWith('...')) {
+                             truncatedText.textContent = truncatedText.textContent.trim() + '...';
+                        }
+                    }
                 });
-                // Un court délai est nécessaire après scrollBy pour que la position soit prise en compte
-                setTimeout(updateArrows, 400); 
             });
 
-            // Gestion du clic sur la flèche gauche
-            leftArrow.addEventListener('click', function() {
-                grid.scrollBy({
-                    left: -scrollDistance,
-                    behavior: 'smooth'
-                });
-                setTimeout(updateArrows, 400); 
-            });
 
-            // Mettre à jour les flèches lors du défilement manuel (si l'utilisateur utilise le tactile/trackpad)
-            grid.addEventListener('scroll', updateArrows);
+            // --- Configuration des deux carrousels ---
             
-            // Initialiser l'état des flèches au chargement
-            updateArrows();
+            // 1. SERVICES
+            setupCarousel('.services-grid', '.services-slider-wrapper .arrow-left', '.services-slider-wrapper .arrow-right');
+
+            // 2. PROJETS
+            setupCarousel('.projects-grid', '.projects-slider-wrapper .arrow-left', '.projects-slider-wrapper .arrow-right');
+
         });
     </script>
 </body>
