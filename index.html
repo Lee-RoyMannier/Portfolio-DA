@@ -70,8 +70,6 @@
             text-align: center;
             background-image: url('https://www.claudiatenhoope.com/wp-content/uploads/2017/11/background1-minmin-1.png');
             background-size:cover;
-            
-
         }
 
         .hero h1 {
@@ -164,15 +162,34 @@
             max-width: 800px;
         }
 
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+        /* ------------------------------------------------------------------ */
+        /* Services Grid (Modification pour le Carrousel/Slider) */
+        /* ------------------------------------------------------------------ */
+
+        .slider-wrapper {
+            position: relative; /* Base pour positionner les flèches */
             margin-top: 3rem;
         }
 
+        .services-grid {
+            display: flex; 
+            flex-wrap: nowrap; 
+            overflow-x: hidden; /* Masquer le défilement natif */
+            scroll-behavior: smooth; /* Défilement doux */
+            gap: 2.5rem;
+            padding-bottom: 1rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Masquer la barre de défilement pour les navigateurs Webkit */
+        .services-grid::-webkit-scrollbar {
+            display: none;
+        }
+
         .service-card {
+            flex-shrink: 0; 
+            width: 320px; 
+            
             background: #fafafa;
             padding: 2.5rem;
             transition: all 0.3s;
@@ -185,6 +202,41 @@
             transform: translateY(-5px);
         }
 
+        /* Styles des flèches */
+        .slider-nav button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(52, 152, 219, 0.9); /* Bleu */
+            color: white;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: background 0.3s, opacity 0.3s;
+        }
+
+        .slider-nav button:hover {
+            background: #2980b9;
+        }
+
+        .slider-nav button.arrow-left {
+            left: -10px; /* Déplacé légèrement à gauche du conteneur */
+        }
+
+        .slider-nav button.arrow-right {
+            right: -10px; /* Déplacé légèrement à droite du conteneur */
+        }
+
+        .slider-nav button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
         .service-icon {
             font-size: 2.5rem;
             color: #3498db;
@@ -213,6 +265,8 @@
             margin-top: 1rem;
             line-height: 1.6;
         }
+        /* ------------------------------------------------------------------ */
+
 
         /* About Section */
         .about {
@@ -598,6 +652,18 @@
             .about-image {
                 height: 300px;
             }
+
+            /* Adapter les flèches du slider sur mobile */
+            .slider-nav button.arrow-left {
+                left: 10px; 
+            }
+
+            .slider-nav button.arrow-right {
+                right: 10px; 
+            }
+            .service-card {
+                width: 280px; /* Légèrement plus petit pour mobile */
+            }
         }
 
         /* Smooth scroll */
@@ -624,14 +690,10 @@
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <div class="container">
-
-
-         
             <div class="logo">Lee-Roy Mannier</div>
-               
+                
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -642,7 +704,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <h1>Je transforme vos <span>données</span> en décisions stratégiques</h1>
@@ -657,7 +718,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services">
         <div class="container">
             <h2 class="section-title">Ce que je peux faire pour vous</h2>
@@ -665,74 +725,73 @@
                 J'ai travaillé dans les secteurs pharmaceutique, forensic et marketing digital. 
                 Mon approche est pratique et je prends la responsabilité de vos projets du début à la fin.
             </p>
-
-            <div class="services-grid">
+            
+            <div class="slider-wrapper">
                 
-                <div class="service-card">
-                    <i class="fas fa-chart-line service-icon"></i>
-                    <h3>Data Analysis & Insights</h3>
-                    <p>
-                        Je transforme vos grands volumes de données en insights actionnables. 
-                        Visualisations claires, analyses statistiques robustes et communication adaptée à tous vos stakeholders.
-                    </p>
-                    <div class="tools"></div>
+                <div class="slider-nav">
+                    <button class="arrow-left" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+                    <button class="arrow-right" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
                 </div>
+                
+                <div class="services-grid">
+                    
+                    <div class="service-card">
+                        <i class="fas fa-chart-line service-icon"></i>
+                        <h3>Data Analysis & Insights</h3>
+                        <p>
+                            Je transforme vos grands volumes de données en insights actionnables. 
+                            Visualisations claires, analyses statistiques robustes et communication adaptée à tous vos stakeholders.
+                        </p>
+                        <div class="tools"></div>
+                    </div>
 
-                <div class="service-card">
-                    <i class="fas fa-database service-icon"></i>
-                    <h3>Data Engineering & ETL</h3>
-                    <p>
-                        Conception de pipelines data robustes et scalables. Code de haute qualité, versionné avec Git, 
-                        prêt pour la production avec tests automatisés.
-                    </p>
-                    <div class="tools"></div>
+                    
+
+                    <div class="service-card">
+                        <i class="fas fa-dashboard service-icon"></i>
+                        <h3>Dashboards & Reporting</h3>
+                        <p>
+                            Dashboards interactifs pour monitorer vos KPIs en temps réel. 
+                            Exploration autonome des tendances et automatisation du reporting récurrent.
+                        </p>
+                        <div class="tools"></div>
+                    </div>
+
+                    <div class="service-card">
+                        <i class="fas fa-robot service-icon"></i>
+                        <h3>Process Automation</h3>
+                        <p>
+                            Automatisation des tâches répétitives et du reporting manuel. 
+                            Réduction jusqu'à 70% des temps de traitement et gain de productivité immédiat.
+                        </p>
+                        <div class="tools"></div>
+                    </div>
+
+                    <div class="service-card">
+                        <i class="fas fa-shield-alt service-icon"></i>
+                        <h3>Data Quality & Governance</h3>
+                        <p>
+                            Mise en place de systèmes de validation et traçabilité. 
+                            Garantie de conformité réglementaire et fiabilité à 100% pour vos données critiques.
+                        </p>
+                        <div class="tools"></div>
+                    </div>
+
+                    <div class="service-card">
+                        <i class="fas fa-users service-icon"></i>
+                        <h3>Training & Support</h3>
+                        <p>
+                            Formation de vos équipes aux outils BI et aux bonnes pratiques data. 
+                            Workshops, formations individuelles et documentation complète.
+                        </p>
+                        <div class="tools"></div>
+                    </div>
                 </div>
-
-                <div class="service-card">
-                    <i class="fas fa-dashboard service-icon"></i>
-                    <h3>Dashboards & Reporting</h3>
-                    <p>
-                        Dashboards interactifs pour monitorer vos KPIs en temps réel. 
-                        Exploration autonome des tendances et automatisation du reporting récurrent.
-                    </p>
-                    <div class="tools"></div>
-                </div>
-
-                <div class="service-card">
-                    <i class="fas fa-robot service-icon"></i>
-                    <h3>Process Automation</h3>
-                    <p>
-                        Automatisation des tâches répétitives et du reporting manuel. 
-                        Réduction jusqu'à 70% des temps de traitement et gain de productivité immédiat.
-                    </p>
-                    <div class="tools"></div>
-                </div>
-
-                <div class="service-card">
-                    <i class="fas fa-shield-alt service-icon"></i>
-                    <h3>Data Quality & Governance</h3>
-                    <p>
-                        Mise en place de systèmes de validation et traçabilité. 
-                        Garantie de conformité réglementaire et fiabilité à 100% pour vos données critiques.
-                    </p>
-                    <div class="tools"></div>
-                </div>
-
-                <div class="service-card">
-                    <i class="fas fa-users service-icon"></i>
-                    <h3>Training & Support</h3>
-                    <p>
-                        Formation de vos équipes aux outils BI et aux bonnes pratiques data. 
-                        Workshops, formations individuelles et documentation complète.
-                    </p>
-                    <div class="tools"></div>
-                </div>
-
+                
             </div>
-        </div>
+            </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">À propos de moi</h2>
@@ -783,7 +842,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projets sélectionnés</h2>
@@ -796,7 +854,7 @@
                 
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-home"></i>
+                        <i class="fa-brands fa-airbnb"></i>
                     </div>
                     <div class="project-content">
                         <h3>Analyse AIRBNB</h3>
@@ -812,7 +870,7 @@
                             <span class="tag">Data Modeling</span>
                             <span class="tag">SCD2</span>
                         </div>
-                        <a href="https://github.com/Lee-RoyMannier/airbnb_analytics" class="project-link"  target="_blank">
+                        <a href="https://github.com/Lee-RoyMannier/airbnb_analytics" class="project-link"  target="_blank">
                             Voir le projet <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -833,7 +891,7 @@
                             <span class="tag">Statistiques</span>
                             <span class="tag">Corrélation</span>
                         </div>
-                        <a href="https://github.com/Lee-RoyMannier/HypeFM-Analytics" class="project-link"  target="_blank">
+                        <a href="https://github.com/Lee-RoyMannier/HypeFM-Analytics" class="project-link"  target="_blank">
                             En savoir plus <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -863,6 +921,35 @@
                     </div>
                 </div>
 
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analyse des emplois dans le domaine de la Data Science</h3>
+                        <p>
+J’ai développé un outil d’analyse du marché mondial de l’emploi en Data Science à partir de données collectées par web scraping sur plusieurs plateformes de recrutement.
+Le projet permet d’identifier :
+
+les plateformes les plus actives,
+
+le salaire médian selon les postes et les pays,
+
+les tendances du marché,
+grâce à un système de filtres interactifs (pays, compétences, titre de poste, plateforme, etc.).
+
+L’objectif est d’offrir une vision centralisée et exploitable des opportunités en Data Science à l’échelle internationale.                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">ETL</span>
+                            <span class="tag">Nettoyage de données</span>
+                            <span class="tag">XLOOKUP/Excel Fonction</span>
+                        </div>
+                        <a href="https://github.com/Lee-RoyMannier/Data-Science-Salary-Dashboard" class="project-link" target="_blank">
+                            En savoir plus <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -896,31 +983,77 @@
                         <a href="#" class="blog-link">Lire l'article →</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> 8 Jan 2025</span>
-                            <span><i class="far fa-clock"></i> 7 min</span>
-                        </div>
-                        <h3>dbt vs SQL classique : Pourquoi j'ai migré</h3>
-                        <p>
-                            Comparaison détaillée entre SQL traditionnel et dbt. Avantages de la modularité, 
-                            des tests automatisés et de la documentation as code pour les projets data à grande échelle.
-                        </p>
-                        <a href="#" class="blog-link">Lire l'article →</a>
-                    </div>
-                </div>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Prenons contact</h2>
+            <p>
+                Vous avez un projet Data à lancer, des processus à optimiser ou besoin d'expertise sur un projet BI ?
+                Je suis disponible pour des missions Freelance ou des opportunités de CDI en Data Analysis / Product Analytics.
+            </p>
+            <div class="cta-group">
+                <a href="https://www.linkedin.com/in/lee-roy-mannier/" class="cta">Me contacter sur LinkedIn</a>
+                <a href="mailto:votre.email@exemple.com" class="cta cta-secondary">Envoyer un Email</a>
+            </div>
+        </div>
+    </section>
 
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> 2 Jan 2
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lee-Roy Mannier. Tous droits réservés.</p>
+            <p>Conçu et développé par Lee-Roy Mannier | <a href="#home">Retour en haut</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const grid = document.querySelector('.services-grid');
+            const leftArrow = document.querySelector('.arrow-left');
+            const rightArrow = document.querySelector('.arrow-right');
             
+            // Calcul de la largeur d'une carte + l'espacement (gap)
+            // La largeur du service-card est 320px, le gap est 2.5rem (~40px si 1rem=16px)
+            // Total: 320px + 40px = 360px
+            const scrollDistance = 360; 
 
+            function updateArrows() {
+                // Désactiver la flèche gauche si nous sommes tout au début
+                leftArrow.disabled = grid.scrollLeft === 0;
+
+                // Désactiver la flèche droite si nous sommes tout à la fin
+                // (scrollLeft + clientWidth doit être égal ou très proche de scrollWidth)
+                rightArrow.disabled = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 5;
+            }
+
+            // Gestion du clic sur la flèche droite
+            rightArrow.addEventListener('click', function() {
+                grid.scrollBy({
+                    left: scrollDistance,
+                    behavior: 'smooth'
+                });
+                // Un court délai est nécessaire après scrollBy pour que la position soit prise en compte
+                setTimeout(updateArrows, 400); 
+            });
+
+            // Gestion du clic sur la flèche gauche
+            leftArrow.addEventListener('click', function() {
+                grid.scrollBy({
+                    left: -scrollDistance,
+                    behavior: 'smooth'
+                });
+                setTimeout(updateArrows, 400); 
+            });
+
+            // Mettre à jour les flèches lors du défilement manuel (si l'utilisateur utilise le tactile/trackpad)
+            grid.addEventListener('scroll', updateArrows);
+            
+            // Initialiser l'état des flèches au chargement
+            updateArrows();
+        });
+    </script>
+</body>
+</html>
